@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
 import java.util.List;
+import java.util.Optional;
+import java.util.concurrent.atomic.AtomicReference;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -35,4 +37,17 @@ public class UserServiceImpl implements UserService {
         return repository.deleteUserByUserid(userid) == 1;
 
     }
+
+    @Override
+    public boolean updateUser(int userid, String username) {
+        Optional<User> op = repository.findById(userid);
+        AtomicReference<User> usertest = new AtomicReference<>(new User());
+        op.ifPresent(user -> {
+            user.setUsername(username);
+            usertest.set(repository.save(user));
+        });
+        if (usertest == null) return false;
+        else return true;
+    }
+
 }

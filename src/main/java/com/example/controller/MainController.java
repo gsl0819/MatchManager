@@ -55,6 +55,13 @@ public class MainController {
             else return new RestBean<>(400, "删除失败！");
         }
 
+        @GetMapping(value = "/updatetUser")
+        public RestBean<Void> updatetUser(int userid, String username) {
+            if (userService.updateUser(userid, username))
+                return new RestBean<>(200, "修改成功");
+            else return new RestBean<>(400, "删除失败！");
+        }
+
     }
 
 }

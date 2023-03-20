@@ -9,4 +9,7 @@ public interface UserService {
     List<User> selectAllUser();
 
     boolean deletUser(int userid);
+
+    boolean updateUser(int userid, String username);
+
 }

@@ -29,7 +29,7 @@ function manageUser() {
 }
 
 function deletUser(userid) {
-    get('http://localhost:8080/deletUser', {userid:userid}, function (data) {
+    get('http://localhost:8080/deletUser', {userid: userid}, function (data) {
         if (data.code === 200) {
             manageUser()
         }
@@ -62,4 +62,26 @@ function post(url, data, success) {
         },
         success: success
     });
+}
+
+function updateRow(cont, userid) {
+    let cell = document.getElementsByTagName('td')
+    cell[parseInt(cont) * 6 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 6 + 1].innerHTML + "' onblur='midname(this)'/>"
+    cell[parseInt(cont) * 6 + 4].innerHTML = "<button onclick=updateUser(" + parseInt(userid) + ")>保存</button>";
+
+}
+
+newname = ""
+
+function midname(inp) {
+    newname = inp.value;
+}
+
+function updateUser(userid) {
+    get('http://localhost:8080/updatetUser', {userid: userid, username: newname}, function (data) {
+        if (data.code === 200) {
+            alert(data.reason)
+            manageUser()
+        }
+    })
 }

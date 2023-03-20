@@ -44,43 +44,56 @@
             let th3 = document.createElement('th');
             let th4 = document.createElement('th');
             let th5 = document.createElement('th');
+            let th6 = document.createElement('th');
             th1.textContent = '用户id';
             th2.textContent = '用户名';
             th3.textContent = '密码';
             th4.textContent = '角色';
-            th5.textContent = '操作';
+            th5.textContent = '修改';
+            th6.textContent = '删除';
             tr.appendChild(th1);
             tr.appendChild(th2);
             tr.appendChild(th3);
             tr.appendChild(th4);
             tr.appendChild(th5);
+            tr.appendChild(th6);
             thead.appendChild(tr);
             table.appendChild(thead);
+            let cont=0
             for (let data of dataJson.data) {
-                console.log(data)
                 let tr = document.createElement('tr');
                 let td1 = document.createElement('td');
                 let td2 = document.createElement('td');
                 let td3 = document.createElement('td');
                 let td4 = document.createElement('td');
                 let td5 = document.createElement('td');
-                let button = document.createElement('button');
-                button.textContent = '删除';
-                button.onclick = function () {
+                let td6 = document.createElement('td');
+                let button5 = document.createElement('button');
+                button5.textContent = '修改';
+                button5.id = cont+''
+                button5.onclick = function () {
+                    updateRow(button5.id,td1.textContent);
+                }
+                let button6 = document.createElement('button');
+                button6.textContent = '删除';
+                button6.onclick = function () {
                     let userid = td1.textContent
-                    deletUser(userid)
+                    deletUser(userid);
                 }
                 td1.textContent = data.userid;
                 td2.textContent = data.username;
                 td3.textContent = data.password;
                 td4.textContent = data.role;
-                td5.appendChild(button);
+                td5.appendChild(button5);
+                td6.appendChild(button6);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
                 tr.appendChild(td4);
                 tr.appendChild(td5);
+                tr.appendChild(td6);
                 tbody.appendChild(tr);
+                cont=cont+1;
             }
             table.appendChild(tbody);
             document.querySelector('.table-wrapper').appendChild(table);
