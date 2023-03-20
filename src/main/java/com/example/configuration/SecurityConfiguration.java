@@ -19,6 +19,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Resource
     DataSource source;
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -40,10 +42,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .tokenRepository(new JdbcTokenRepositoryImpl() {{
                     setDataSource(source);
                 }})
+                .userDetailsService(service)
                 .and()
                 .csrf()
                 .disable()
-                .cors();
+                .cors()
         ;
     }
 
