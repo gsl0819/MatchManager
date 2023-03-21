@@ -1,7 +1,9 @@
 package com.example.controller;
 
+import com.example.entity.Club;
 import com.example.entity.User;
 import com.example.entity.resp.RestBean;
+import com.example.service.ClubService;
 import com.example.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import javax.annotation.Resource;
 public class MainController {
     @Resource
     UserService userService;
+    @Resource
+    ClubService clubService;
 
     @RequestMapping(value = "/register", method = RequestMethod.GET)
     public String register() {
@@ -29,10 +33,14 @@ public class MainController {
         return "index";
     }
 
-
     @GetMapping("/user")
     public String user() {
         return "user";
+    }
+
+    @GetMapping("/club")
+    public String club() {
+        return "club";
     }
 
     @RestController
@@ -67,6 +75,12 @@ public class MainController {
             String role = userService.getRoleByUsername(username);
             return new RestBean<>(200, role);
         }
+
+        @GetMapping(value = "/manageClub")
+        public RestBean<Club> manageClub() {
+            return new RestBean<>(200, "", clubService.selectAllClub());
+        }
+
 
     }
 

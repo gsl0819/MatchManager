@@ -92,7 +92,16 @@ function findRoleByUsername(username) {
             document.cookie = "returnUserName = " + escape(data.reason);
         }
     })
+}
 
+function manageClub() {
+    get('http://localhost:8080/manageClub', {}, function (data) {
+        if (data.code === 200) {
+            let orderClubData = data;
+            let dataClubJson = JSON.stringify(orderClubData);
+            location.href = encodeURI("club?dataClubJson=" + dataClubJson);
+        }
+    })
 }
 
 

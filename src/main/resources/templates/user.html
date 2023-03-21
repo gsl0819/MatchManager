@@ -109,117 +109,7 @@
 </div>
 <!-- Main Body -->
 <div class="page-wrapper">
-    <header class="header-wrapper main-header">
-        <div class="header-inner-wrapper">
-            <div class="logo-wrapper">
-                <a href="" class="admin-logo">
-                    <img src="static/picture/logo.png" alt="">
-                </a>
-            </div>
-            <div class="header-right">
-                <div class="header-left">
-                    <div class="header-links">
-                        <a href="javascript:void(0);" class="toggle-btn">
-                            <span></span>
-                        </a>
-                    </div>
-                </div>
-                <div class="header-controls">
-                    <div class="user-info-wrapper header-links">
-                        <a href="javascript:void(0);" class="user-info">
-                            <img src="static/picture/user.jpg" alt="" class="user-img">
-                            <div class="blink-animation">
-                                <span class="blink-circle"></span>
-                                <span class="main-circle"></span>
-                            </div>
-                        </a>
-                        <div class="user-info-box">
-                            <div class="drop-down-header">
-                                <h4 id="profile-name">欢迎</h4>
-                                <p>账户</p>
-                            </div>
-                            <ul>
-                                <li>
-                                    <a href="javascript:logout()">
-                                        <i class="fas fa-sign-out-alt"></i> 退出登陆
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </header>
-    <aside class="sidebar-wrapper">
-        <div class="side-menu-wrap">
-            <ul class="main-menu">
-                <li>
-                    <a href="javascript:manageUser()" class="active">
-                            <span class="icon-menu feather-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-home"><path
-                                        d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline
-                                        points="9 22 9 12 15 12 15 22"></polyline></svg>
-                            </span>
-                        <span class="menu-text">
-                                用户管理
-                            </span>
-                    </a>
-                </li>
-                <li id="yonghuguanli">
-                    <a th:href="@{/page/admin/book}">
-                            <span class="icon-menu feather-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-package"><line x1="16.5" y1="9.4"
-                                                                                                   x2="7.5"
-                                                                                                   y2="4.21"></line><path
-                                        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline
-                                        points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08"
-                                                                                                x2="12" y2="12"></line></svg>
-                            </span>
-                        <span class="menu-text">
-                                图书管理
-                            </span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/page/user/index}">
-                            <span class="icon-menu feather-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-users"><path
-                                        d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7"
-                                                                                                     r="4"></circle><path
-                                        d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
-                                        d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                            </span>
-                        <span class="menu-text">
-                                图书借阅
-                            </span>
-                    </a>
-                </li>
-                <li>
-                    <a th:href="@{/page/user/book}">
-                            <span class="icon-menu feather-icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"
-                                     stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                     stroke-linejoin="round" class="feather feather-users"><path
-                                        d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7"
-                                                                                                     r="4"></circle><path
-                                        d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path
-                                        d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                            </span>
-                        <span class="menu-text">
-                                借阅管理
-                            </span>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    </aside>
+
     <div class="page-wrapper">
         <div class="main-content">
             <!-- Page Title Start -->
@@ -247,38 +137,8 @@
                             <div class="chart-holder">
                                 <div class="table-responsive">
                                     <table class="table table-styled mb-0 table-wrapper">
-                                        <!--                                        <thead>-->
-                                        <!--                                        <tr>-->
-                                        <!--                                            <th>userid</th>-->
-                                        <!--                                            <th>username</th>-->
-                                        <!--                                            <th>password</th>-->
-                                        <!--                                            <th>role</th>-->
-                                        <!--                                            <th>删除</th>-->
-                                        <!--                                        </tr>-->
-                                        <!--                                        </thead>-->
-                                        <!--                                        <tbody>-->
-                                        <!--                                        <tr>-->
-                                        <!--                                            <td class="userId1"></td>-->
-                                        <!--                                            <td class=""></td>-->
-                                        <!--                                            <td></td>-->
-                                        <!--                                            <td></td>-->
-                                        <!--                                            <td class="relative">-->
-                                        <!--                                                <a class="action-btn ">-->
-                                        <!--                                                    <svg class="default-size " viewBox="0 0 341.333 341.333 ">-->
-                                        <!--                                                        <g>-->
-                                        <!--                                                            <g>-->
-                                        <!--                                                                <g>-->
-                                        <!--                                                                    <path d="M170.667,85.333c23.573,0,42.667-19.093,42.667-42.667C213.333,19.093,194.24,0,170.667,0S128,19.093,128,42.667 C128,66.24,147.093,85.333,170.667,85.333z "></path>-->
-                                        <!--                                                                    <path d="M170.667,128C147.093,128,128,147.093,128,170.667s19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 S194.24,128,170.667,128z "></path>-->
-                                        <!--                                                                    <path d="M170.667,256C147.093,256,128,275.093,128,298.667c0,23.573,19.093,42.667,42.667,42.667s42.667-19.093,42.667-42.667 C213.333,275.093,194.24,256,170.667,256z "></path>-->
-                                        <!--                                                                </g>-->
-                                        <!--                                                            </g>-->
-                                        <!--                                                        </g>-->
-                                        <!--                                                    </svg>-->
-                                        <!--                                                </a>-->
-                                        <!--                                            </td>-->
-                                        <!--                                        </tr>-->
-                                        <!--                                        </tbody>-->
+
+
                                     </table>
                                 </div>
                             </div>
