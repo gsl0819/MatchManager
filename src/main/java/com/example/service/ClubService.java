@@ -6,4 +6,7 @@ import java.util.List;
 
 public interface ClubService {
     List<Club> selectAllClub();
+
+    boolean deletClub(int clubid);
 }
+

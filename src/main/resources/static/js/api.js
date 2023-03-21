@@ -104,4 +104,11 @@ function manageClub() {
     })
 }
 
+function deletClub(clubid){
+    get('http://localhost:8080/deletClub', {clubid: clubid}, function (data) {
+        if (data.code === 200) {
+            manageClub()
+        }
+    })
+}
 

@@ -81,7 +81,12 @@ public class MainController {
             return new RestBean<>(200, "", clubService.selectAllClub());
         }
 
-
+        @GetMapping(value = "/deletClub")
+        public RestBean<Void> deletClub(int clubid) {
+            if (clubService.deletClub(clubid))
+                return new RestBean<>(200, "删除成功");
+            else return new RestBean<>(400, "删除失败！");
+        }
     }
 
 }

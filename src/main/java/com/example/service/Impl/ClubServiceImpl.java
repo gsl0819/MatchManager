@@ -12,8 +12,14 @@ import java.util.List;
 public class ClubServiceImpl implements ClubService {
     @Resource
     ClubRepository clubRepository;
+
     @Override
     public List<Club> selectAllClub() {
         return clubRepository.findAll();
+    }
+
+    @Override
+    public boolean deletClub(int clubid) {
+        return clubRepository.deleteClubByClubid(clubid) == 1;
     }
 }
