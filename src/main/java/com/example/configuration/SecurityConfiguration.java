@@ -19,14 +19,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Resource
     DataSource source;
 
-
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
                 .antMatchers("/static/**", "/register", "/api/auth/**").permitAll()
-                .anyRequest().hasRole("管理员")
+                .anyRequest().hasAnyRole("管理员","普通用户")
                 .and()
                 .formLogin()
                 .loginPage("/login")
@@ -56,4 +54,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .userDetailsService(service)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
+
+
 }

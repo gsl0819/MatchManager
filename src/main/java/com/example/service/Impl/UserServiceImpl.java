@@ -50,4 +50,9 @@ public class UserServiceImpl implements UserService {
         else return true;
     }
 
+    @Override
+    public String getRoleByUsername(String username) {
+        return repository.findUserByUsername(username).getRole();
+    }
+
 }

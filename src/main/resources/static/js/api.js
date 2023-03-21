@@ -41,7 +41,7 @@ function get(url, data, success) {
         type: "get",
         data: data,
         url: url,
-        async: true,
+        async: false,
         dataType: 'json',
         xhrFields: {
             withCredentials: true
@@ -54,7 +54,7 @@ function post(url, data, success) {
     $.ajax({
         type: "post",
         url: url,
-        async: true,
+        async: false,
         data: data,
         dataType: 'json',
         xhrFields: {
@@ -85,3 +85,14 @@ function updateUser(userid) {
         }
     })
 }
+
+function findRoleByUsername(username) {
+    get('http://localhost:8080/findRoleByUsername', {username: username}, function (data) {
+        if (data.code === 200) {
+            document.cookie = "returnUserName = " + escape(data.reason);
+        }
+    })
+
+}
+
+

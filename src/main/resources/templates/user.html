@@ -59,7 +59,7 @@
             tr.appendChild(th6);
             thead.appendChild(tr);
             table.appendChild(thead);
-            let cont=0
+            let cont = 0
             for (let data of dataJson.data) {
                 let tr = document.createElement('tr');
                 let td1 = document.createElement('td');
@@ -70,9 +70,9 @@
                 let td6 = document.createElement('td');
                 let button5 = document.createElement('button');
                 button5.textContent = '修改';
-                button5.id = cont+''
+                button5.id = cont + ''
                 button5.onclick = function () {
-                    updateRow(button5.id,td1.textContent);
+                    updateRow(button5.id, td1.textContent);
                 }
                 let button6 = document.createElement('button');
                 button6.textContent = '删除';
@@ -93,7 +93,7 @@
                 tr.appendChild(td5);
                 tr.appendChild(td6);
                 tbody.appendChild(tr);
-                cont=cont+1;
+                cont = cont + 1;
             }
             table.appendChild(tbody);
             document.querySelector('.table-wrapper').appendChild(table);
@@ -168,7 +168,7 @@
                             </span>
                     </a>
                 </li>
-                <li>
+                <li id="yonghuguanli">
                     <a th:href="@{/page/admin/book}">
                             <span class="icon-menu feather-icon">
                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" fill="none"

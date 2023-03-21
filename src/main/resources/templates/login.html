@@ -7,6 +7,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../static/newloginpage/style.css">
+    <script src="static/js/api.js"></script>
+    <script src="static/js/jquery.min.js"></script>
+    <script>
+        function upUsername() {
+            let username = document.getElementsByTagName("input")[0].value;
+            document.cookie = "userName =" + username;
+        }
+    </script>
 </head>
 
 <body>
@@ -25,7 +33,7 @@
                         <input name="password" type="password" class="input-item" placeholder="密码">
                     </div>
                     <!--                    <button class="login-btn">登 录</button>-->
-                    <button href="javascript:void(0);" class="login-btn">登录</button>
+                    <button onclick="javascript:upUsername()" class="login-btn">登录</button>
                 </div>
                 <div class="divider">
                     <span class="line"></span>

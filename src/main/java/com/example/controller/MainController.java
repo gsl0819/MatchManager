@@ -29,6 +29,7 @@ public class MainController {
         return "index";
     }
 
+
     @GetMapping("/user")
     public String user() {
         return "user";
@@ -59,6 +60,12 @@ public class MainController {
             if (userService.updateUser(userid, username))
                 return new RestBean<>(200, "修改成功");
             else return new RestBean<>(400, "删除失败！");
+        }
+
+        @GetMapping(value = "/findRoleByUsername")
+        public RestBean<User> findRoleByUsername(String username) {
+            String role = userService.getRoleByUsername(username);
+            return new RestBean<>(200, role);
         }
 
     }
