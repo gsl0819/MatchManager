@@ -165,3 +165,13 @@ function addClub() {
             }
         })
 }
+
+function showClub(){
+    get('http://localhost:8080/manageClub', {}, function (data) {
+        if (data.code === 200) {
+            let orderClubData = data;
+            let dataClubJson = JSON.stringify(orderClubData);
+            location.href = encodeURI("showclub?dataClubJson=" + dataClubJson);
+        }
+    })
+}

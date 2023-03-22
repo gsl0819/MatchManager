@@ -48,6 +48,11 @@ public class MainController {
         return "club";
     }
 
+    @GetMapping("/showclub")
+    public String showclub() {
+        return "showclub";
+    }
+
     @RestController
     public class BootController {
         @GetMapping(value = "/api/auth/logout-success")

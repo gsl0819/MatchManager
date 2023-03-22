@@ -25,13 +25,6 @@ class MatchManageApplicationTests {
 
     @Test
     void contextLoads() {
-        try {
-            clubService.addClub("WE");
-            System.out.println(1);
-        } catch (Exception e) {
-            System.out.println(2);
-        }
-
     }
 
 }
