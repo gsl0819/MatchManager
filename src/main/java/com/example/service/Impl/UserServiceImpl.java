@@ -18,13 +18,19 @@ public class UserServiceImpl implements UserService {
     UserRepository repository;
 
     @Override
-    public void creatUser(String username, String password, String role) {
+    public boolean creatUser(String username, String password, String role) {
         User user = new User();
         user.setUsername(username);
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
         user.setPassword(encoder.encode(password));
         user.setRole(role);
-        repository.save(user);
+        try {
+            repository.save(user);
+            return true;
+        }catch (Exception e){
+            return false;
+        }
+
     }
 
     @Override

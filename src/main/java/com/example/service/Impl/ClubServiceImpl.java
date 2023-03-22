@@ -4,6 +4,7 @@ import com.example.entity.Club;
 import com.example.entity.User;
 import com.example.repo.ClubRepository;
 import com.example.service.ClubService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,5 +37,17 @@ public class ClubServiceImpl implements ClubService {
         });
         if (clubtest == null) return false;
         else return true;
+    }
+
+    @Override
+    public boolean addClub(String clubname) {
+        Club club = new Club();
+        club.setClubname(clubname);
+        try {
+            clubRepository.save(club);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }

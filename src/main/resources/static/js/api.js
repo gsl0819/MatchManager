@@ -10,6 +10,23 @@ function askVerifycode() {
     })
 }
 
+function register() {
+    get('http://localhost:8080/api/auth/register', {
+        email: $("#input-email").val(),
+        verify: $("#input-verify").val(),
+        password: $("#input-password").val()
+    }, function (data) {
+        if (data.code === 200) {
+            alert(data.reason)
+            window.location = "login"
+        } else {
+            alert(data.reason)
+            window.location = "register"
+        }
+    })
+
+}
+
 function logout() {
     get('http://localhost:8080/api/auth/logout', {}, function (data) {
         if (data.code === 200) {
@@ -134,3 +151,17 @@ function deletClub(clubid) {
     })
 }
 
+function addClub() {
+    get('http://localhost:8080/addclubinjs',
+        {
+            clubname: $("#addclubname").val()
+        }, function (data) {
+            if (data.code === 200) {
+                alert(data.reason)
+                manageClub();
+            } else {
+                alert(data.reason)
+                manageClub();
+            }
+        })
+}

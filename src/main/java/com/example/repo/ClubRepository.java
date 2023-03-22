@@ -14,4 +14,5 @@ public interface ClubRepository extends JpaRepository<Club, Integer> {
 
     @Transactional
     int deleteClubByClubid(int clubid);
+
 }

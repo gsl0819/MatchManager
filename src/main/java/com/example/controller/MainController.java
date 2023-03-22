@@ -28,6 +28,11 @@ public class MainController {
         return "login";
     }
 
+    @RequestMapping("/addclub")
+    public String addClub() {
+        return "addclub";
+    }
+
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -92,8 +97,16 @@ public class MainController {
         public RestBean<Void> updatetClub(int clubid, String clubname) {
             if (clubService.updateClub(clubid, clubname))
                 return new RestBean<>(200, "修改成功");
-            else return new RestBean<>(400, "删除失败！");
+            else return new RestBean<>(400, "修改失败！");
         }
+
+        @GetMapping(value = "/addclubinjs")
+        public RestBean<Void> addClub(String clubname) {
+            if (clubService.addClub(clubname))
+                return new RestBean<>(200, "添加成功");
+            else return new RestBean<>(400, "战队名已存在！添加失败！");
+        }
+
     }
 
 }

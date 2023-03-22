@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>赛事管理系统</title>
     <link rel="stylesheet" href="../static/newpage/style.css">
     <script src="/static/js/api.js"></script>
     <script src="static/js/jquery.min.js"></script>
@@ -20,13 +20,13 @@
     <div class="right">
 
         <div class="form-wrappepr">
-            <form action="http://localhost:8080/api/auth/register" method="post">
+            <form method="get">
                 <h1>您好,欢迎注册!</h1>
                 <input type="text" name="email" id="input-email" class="inputs user" placeholder="请输入邮箱">
-                <input type="text" name="verify" class="inputs user" placeholder="请输入验证码">
+                <input type="text" name="verify" id="input-verify" class="inputs user" placeholder="请输入验证码">
                 <a class="tips" href="javascript:askVerifycode()">获取验证码</a>
-                <input type="password" name="password" class="inputs pwd" placeholder="请输入密码">
-                <button href="javascript:void(0);">Regiser</button>
+                <input type="password" name="password" id="input-password" class="inputs pwd" placeholder="请输入密码">
+                <button onclick="javascript:register()">Regiser</button>
                 <div class="other-login">
                     <div class="divider">
                         <span class="line"></span>

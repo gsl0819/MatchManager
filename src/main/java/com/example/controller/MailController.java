@@ -26,13 +26,18 @@ public class MailController {
         }
     }
 
-    @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public RestBean<Void> register(String password,
-                                   String email,
-                                   String verify) {
+    @RequestMapping(value = "/register", method = RequestMethod.GET)
+    public RestBean<Void> register(
+            String email,
+            String verify,
+            String password) {
         if (mailService.doVerify(email, verify)) {
-            userService.creatUser(email, password, "普通用户");
-            return new RestBean<>(200, "注册成功！");
+            if (userService.creatUser(email, password, "普通用户")){
+                return new RestBean<>(200, "注册成功！");
+            }
+            else {
+                return new RestBean<>(402, "注册失败！账号已被注册！");
+            }
         } else {
             return new RestBean<>(403, "注册失败！验证码填写错误");
         }

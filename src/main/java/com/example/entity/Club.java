@@ -14,4 +14,12 @@ public class Club {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int clubid;
     String clubname;
+
+    public Club(String clubname) {
+        this.clubname = clubname;
+    }
+
+    public Club() {
+
+    }
 }
