@@ -87,6 +87,13 @@ public class MainController {
                 return new RestBean<>(200, "删除成功");
             else return new RestBean<>(400, "删除失败！");
         }
+
+        @GetMapping(value = "/updatetClub")
+        public RestBean<Void> updatetClub(int clubid, String clubname) {
+            if (clubService.updateClub(clubid, clubname))
+                return new RestBean<>(200, "修改成功");
+            else return new RestBean<>(400, "删除失败！");
+        }
     }
 
 }

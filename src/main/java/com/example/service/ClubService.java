@@ -8,5 +8,8 @@ public interface ClubService {
     List<Club> selectAllClub();
 
     boolean deletClub(int clubid);
+
+    boolean updateClub(int clubid, String clubname);
+
 }
 

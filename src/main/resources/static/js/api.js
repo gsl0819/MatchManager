@@ -71,6 +71,28 @@ function updateRow(cont, userid) {
 
 }
 
+function updateClubRow(cont, userid) {
+    let cell = document.getElementsByTagName('td')
+    cell[parseInt(cont) * 4 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 1].innerHTML + "' onblur='midclubname(this)'/>"
+    cell[parseInt(cont) * 4 + 2].innerHTML = "<button onclick=updateClub(" + parseInt(userid) + ")>保存</button>";
+
+}
+
+newclubname = ''
+
+function midclubname(inp) {
+    newclubname = inp.value;
+}
+
+function updateClub(clubid) {
+    get('http://localhost:8080/updatetClub', {clubid: clubid, clubname: newclubname}, function (data) {
+        if (data.code === 200) {
+            alert(data.reason)
+            manageClub();
+        }
+    })
+}
+
 newname = ""
 
 function midname(inp) {
@@ -104,7 +126,7 @@ function manageClub() {
     })
 }
 
-function deletClub(clubid){
+function deletClub(clubid) {
     get('http://localhost:8080/deletClub', {clubid: clubid}, function (data) {
         if (data.code === 200) {
             manageClub()
