@@ -1,6 +1,5 @@
 package com.example.controller;
 
-import com.example.entity.User;
 import com.example.entity.resp.RestBean;
 import com.example.service.MailService;
 import com.example.service.UserService;

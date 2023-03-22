@@ -1,10 +1,8 @@
 package com.example.service.Impl;
 
 import com.example.entity.Club;
-import com.example.entity.User;
 import com.example.repo.ClubRepository;
 import com.example.service.ClubService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
