@@ -18,10 +18,10 @@ function register() {
     }, function (data) {
         if (data.code === 200) {
             alert(data.reason)
-            window.location = "login"
+            window.location.href = "login"
         } else {
             alert(data.reason)
-            window.location = "register"
+            window.location.href = "register"
         }
     })
 
@@ -88,11 +88,83 @@ function updateRow(cont, userid) {
 
 }
 
-function updateClubRow(cont, userid) {
+function updateClubRow(cont, clubid) {
     let cell = document.getElementsByTagName('td')
     cell[parseInt(cont) * 4 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 1].innerHTML + "' onblur='midclubname(this)'/>"
-    cell[parseInt(cont) * 4 + 2].innerHTML = "<button onclick=updateClub(" + parseInt(userid) + ")>保存</button>";
+    cell[parseInt(cont) * 4 + 2].innerHTML = "<button onclick=updateClub(" + parseInt(clubid) + ")>保存</button>";
 
+}
+
+oldrname = ""
+oldrage = ""
+oldrclubname = ""
+oldrole = ""
+
+function updatePlayerRow(cont, playerid) {
+    let cell = document.getElementsByTagName('td')
+    oldname = cell[parseInt(cont) * 7 + 1].innerHTML;
+    cell[parseInt(cont) * 7 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 1].innerHTML + "' onblur='midplayername(this)'/>"
+    oldage = cell[parseInt(cont) * 7 + 2].innerHTML;
+    cell[parseInt(cont) * 7 + 2].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 2].innerHTML + "' onblur='midplayerage(this)'/>"
+    oldclubname = cell[parseInt(cont) * 7 + 3].innerHTML;
+    cell[parseInt(cont) * 7 + 3].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 3].innerHTML + "' onblur='midplayerclubid(this)'/>"
+    oldrole = cell[parseInt(cont) * 7 + 4].innerHTML;
+    cell[parseInt(cont) * 7 + 4].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 4].innerHTML + "' onblur='midplayerrole(this)'/>"
+    cell[parseInt(cont) * 7 + 5].innerHTML = "<button onclick=updatePlayer(" + parseInt(playerid) + ")>保存</button>";
+
+}
+
+function updatePlayer(playerid) {
+    get('http://localhost:8080/updatePlayer',
+        {
+            playerid: playerid,
+            playername: function () {
+                if (newplayername === '')
+                    return oldname;
+                else return newplayername;
+            },
+            playerage: function () {
+                if (newplayerage === '')
+                    return oldage;
+                else return newplayerage;
+            },
+            clubname: function () {
+                if (newplayerclubname === '')
+                    return oldclubname;
+                else return newplayerclubname;
+            },
+            role: function () {
+                if (newplayerrole === '')
+                    return oldrole;
+                else return newplayerrole;
+            }
+        }, function (data) {
+            if (data.code === 200) {
+                alert(data.reason)
+                managePlayer();
+            }
+        })
+}
+
+newplayername = ""
+newplayerage = ""
+newplayerclubname = ""
+newplayerrole = ""
+
+function midplayername(inp) {
+    newplayername = inp.value
+}
+
+function midplayerage(inp) {
+    newplayerage = inp.value
+}
+
+function midplayerclubid(inp) {
+    newplayerclubname = inp.value
+}
+
+function midplayerrole(inp) {
+    newplayerrole = inp.value
 }
 
 newclubname = ''
@@ -151,6 +223,15 @@ function deletClub(clubid) {
     })
 }
 
+function deletPlayer(playerid) {
+    get('http://localhost:8080/deletPlayer', {playerid: playerid}, function (data) {
+        if (data.code === 200) {
+            alert(data.reason)
+            managePlayer()
+        }
+    })
+}
+
 function addClub() {
     get('http://localhost:8080/addclubinjs',
         {
@@ -166,12 +247,22 @@ function addClub() {
         })
 }
 
-function showClub(){
+function showClub() {
     get('http://localhost:8080/manageClub', {}, function (data) {
         if (data.code === 200) {
             let orderClubData = data;
             let dataClubJson = JSON.stringify(orderClubData);
             location.href = encodeURI("showclub?dataClubJson=" + dataClubJson);
         }
+    })
+}
+
+function managePlayer() {
+    get('http://localhost:8080/managePlayer', {}, function (data) {
+        let orderPlayerData = data[0];
+        let dataPlayerJson = JSON.stringify(orderPlayerData);
+        let orderClubData = data[1];
+        let dataClubJson = JSON.stringify(orderClubData);
+        location.href = encodeURI("player?dataPlayerJson=" + dataPlayerJson + "&dataClubJson=" + dataClubJson);
     })
 }

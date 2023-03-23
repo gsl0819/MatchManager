@@ -4,11 +4,14 @@ import com.example.entity.Club;
 import com.example.entity.User;
 import com.example.entity.resp.RestBean;
 import com.example.service.ClubService;
+import com.example.service.PlayerService;
 import com.example.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.util.LinkedList;
+import java.util.List;
 
 @RestController
 public class AdminController {
@@ -16,6 +19,8 @@ public class AdminController {
     UserService userService;
     @Resource
     ClubService clubService;
+    @Resource
+    PlayerService playerService;
 
     @GetMapping(value = "/api/auth/logout-success")
     public RestBean<Void> logoutSuccess() {
@@ -53,6 +58,14 @@ public class AdminController {
         return new RestBean<>(200, "", clubService.selectAllClub());
     }
 
+    @GetMapping(value = "/managePlayer")
+    public List<RestBean> managePlayer() {
+        List<RestBean> list = new LinkedList<>();
+        list.add(new RestBean<>(200, "", playerService.selectAllPlayer()));
+        list.add(new RestBean<>(200, "", clubService.selectAllClub()));
+        return list;
+    }
+
     @GetMapping(value = "/deletClub")
     public RestBean<Void> deletClub(int clubid) {
         if (clubService.deletClub(clubid))
@@ -60,9 +73,27 @@ public class AdminController {
         else return new RestBean<>(400, "删除失败！");
     }
 
+    @GetMapping(value = "/deletPlayer")
+    public RestBean<Void> deletPlayer(int playerid) {
+        if (playerService.deletPlayer(playerid))
+            return new RestBean<>(200, "删除成功");
+        else return new RestBean<>(400, "删除失败！");
+    }
+
     @GetMapping(value = "/updatetClub")
     public RestBean<Void> updatetClub(int clubid, String clubname) {
         if (clubService.updateClub(clubid, clubname))
+            return new RestBean<>(200, "修改成功");
+        else return new RestBean<>(400, "修改失败！");
+    }
+
+    @GetMapping(value = "/updatePlayer")
+    public RestBean<Void> updatePlayer(int playerid,
+                                       String playername,
+                                       int playerage,
+                                       String clubname,
+                                       String role) {
+        if (playerService.updatePlayer(playerid, playername, playerage, clubname, role))
             return new RestBean<>(200, "修改成功");
         else return new RestBean<>(400, "修改失败！");
     }

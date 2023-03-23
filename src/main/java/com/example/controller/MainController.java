@@ -39,6 +39,11 @@ public class MainController {
         return "club";
     }
 
+    @GetMapping("/player")
+    public String player() {
+        return "player";
+    }
+
     @GetMapping("/showclub")
     public String showclub() {
         return "showclub";
