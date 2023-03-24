@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import java.io.UnsupportedEncodingException;
+import java.net.URLDecoder;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -103,6 +105,17 @@ public class AdminController {
         if (clubService.addClub(clubname))
             return new RestBean<>(200, "添加成功");
         else return new RestBean<>(400, "战队名已存在！添加失败！");
+    }
+
+    @GetMapping(value = "/addplayerinjs")
+    public RestBean<Void> addplayer(String playername,
+                                    int playerage,
+                                    int playerclub,
+                                    String playerrole) {
+        if (playerService.addPlayer(playername, playerage, playerclub, playerrole))
+            return new RestBean<>(200, "添加成功");
+        else return new RestBean<>(400, "添加失败！");
+
     }
 
 }

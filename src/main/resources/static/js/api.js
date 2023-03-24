@@ -257,6 +257,16 @@ function showClub() {
     })
 }
 
+function showPlayer() {
+    get('http://localhost:8080/managePlayer', {}, function (data) {
+        let orderPlayerData = data[0];
+        let dataPlayerJson = JSON.stringify(orderPlayerData);
+        let orderClubData = data[1];
+        let dataClubJson = JSON.stringify(orderClubData);
+        location.href = encodeURI("showplayer?dataPlayerJson=" + dataPlayerJson + "&dataClubJson=" + dataClubJson);
+    })
+}
+
 function managePlayer() {
     get('http://localhost:8080/managePlayer', {}, function (data) {
         let orderPlayerData = data[0];
@@ -265,4 +275,22 @@ function managePlayer() {
         let dataClubJson = JSON.stringify(orderClubData);
         location.href = encodeURI("player?dataPlayerJson=" + dataPlayerJson + "&dataClubJson=" + dataClubJson);
     })
+}
+
+function addPlayer() {
+    get('http://localhost:8080/addplayerinjs',
+        {
+            playername: $("#addplayername").val(),
+            playerage: $("#addplayerage").val(),
+            playerclub: $("#selectplayergslaaa").val(),
+            playerrole: $("#addplayerrole").val()
+        }, function (data) {
+            if (data.code === 200) {
+                alert(data.reason)
+                managePlayer();
+            } else {
+                alert(data.reason)
+                managePlayer();
+            }
+        })
 }

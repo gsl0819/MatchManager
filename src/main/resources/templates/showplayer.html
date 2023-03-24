@@ -36,9 +36,6 @@
             let dataClubJson;
             let orderClubData = str.substring(str.lastIndexOf("=") + 1);
             dataClubJson = $.parseJSON(decodeURI(orderClubData));
-
-            document.cookie = "returnClub = " + orderClubData
-
             //分界线
             let table = document.createElement('table');
             let thead = document.createElement('thead');
@@ -49,25 +46,18 @@
             let th3 = document.createElement('th');
             let th4 = document.createElement('th');
             let th7 = document.createElement('th');
-            let th5 = document.createElement('th');
-            let th6 = document.createElement('th');
             th1.textContent = '队员id';
             th2.textContent = '队员姓名';
             th3.textContent = '队员年龄';
             th4.textContent = '战队名';
             th7.textContent = '位置';
-            th5.textContent = '修改';
-            th6.textContent = '删除';
             tr.appendChild(th1);
             tr.appendChild(th2);
             tr.appendChild(th3);
             tr.appendChild(th4);
             tr.appendChild(th7);
-            tr.appendChild(th5);
-            tr.appendChild(th6);
             thead.appendChild(tr);
             table.appendChild(thead);
-            let cont = 0
             let clubName = new Array();
             for (let data of dataClubJson.data) {
                 clubName[data.clubid] = data.clubname;
@@ -79,42 +69,22 @@
                 let td3 = document.createElement('td');
                 let td4 = document.createElement('td');
                 let td7 = document.createElement('td');
-                let td5 = document.createElement('td');
-                let td6 = document.createElement('td');
-                let button5 = document.createElement('button');
-                button5.textContent = '修改';
-                button5.id = cont + ''
-                button5.onclick = function () {
-                    updatePlayerRow(button5.id, td1.textContent);
-                }
-                let button6 = document.createElement('button');
-                button6.textContent = '删除';
-                button6.onclick = function () {
-                    let playerid = td1.textContent
-                    deletPlayer(playerid);
-                }
                 td1.textContent = data.playerid;
                 td2.textContent = data.playername;
                 td3.textContent = data.playerage;
                 td4.textContent = clubName[data.clubid]
                 td7.textContent = data.role;
-                td5.appendChild(button5);
-                td6.appendChild(button6);
                 tr.appendChild(td1);
                 tr.appendChild(td2);
                 tr.appendChild(td3);
                 tr.appendChild(td4);
                 tr.appendChild(td7);
-                tr.appendChild(td5);
-                tr.appendChild(td6);
                 tbody.appendChild(tr);
-                cont = cont + 1;
             }
             table.appendChild(tbody);
             document.querySelector('.table-wrapper').appendChild(table);
         }
     </script>
-
 </head>
 
 <body>
@@ -125,8 +95,8 @@
 </div>
 <!-- Main Body -->
 <div class="page-wrapper">
-    <div th:replace="admintemplate.html::title"></div>
-    <div th:replace="admintemplate.html::aside"></div>
+    <div th:replace="viewtemplate.html::title"></div>
+    <div th:replace="viewtemplate.html::aside"></div>
     <div class="page-wrapper">
         <div class="main-content">
             <!-- Page Title Start -->
@@ -134,16 +104,10 @@
                 <div class="colxl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-title-wrapper">
                         <div class="page-title-box ad-title-box-use">
-                            <h4 class="page-title">队员管理</h4>
+                            <h4 class="page-title">队员查询</h4>
                         </div>
                         <div class="ad-breadcrumb">
-                            <ul>
-                                <li>
-                                    <div class="add-group">
-                                        <a class="ad-btn" href="addplayer">添加新队员</a>
-                                    </div>
-                                </li>
-                            </ul>
+
                         </div>
                     </div>
                 </div>

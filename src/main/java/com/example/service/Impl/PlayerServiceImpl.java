@@ -48,4 +48,19 @@ public class PlayerServiceImpl implements PlayerService {
         if (playertest == null) return false;
         else return true;
     }
+
+    @Override
+    public boolean addPlayer(String playername, int playerage, int playerclub, String playerrole) {
+        Player player = new Player();
+        player.setPlayername(playername);
+        player.setPlayerage(playerage);
+        player.setClubid(playerclub);
+        player.setRole(playerrole);
+        try {
+            playerRepository.save(player);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }

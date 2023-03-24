@@ -11,4 +11,7 @@ public interface PlayerService {
     boolean deletPlayer(int playerid);
 
     boolean updatePlayer(int playerid, String playername, int playerage, String clubid, String role);
+
+    boolean addPlayer(String playername, int playerage, int playerclub, String playerrole);
+
 }

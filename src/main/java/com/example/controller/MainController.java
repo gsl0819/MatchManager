@@ -24,6 +24,11 @@ public class MainController {
         return "addclub";
     }
 
+    @RequestMapping("/addplayer")
+    public String addpalyer() {
+        return "addplayer";
+    }
+
     @RequestMapping("/index")
     public String index() {
         return "index";
@@ -47,6 +52,11 @@ public class MainController {
     @GetMapping("/showclub")
     public String showclub() {
         return "showclub";
+    }
+
+    @GetMapping("/showplayer")
+    public String showplayer() {
+        return "showplayer";
     }
 
 }
