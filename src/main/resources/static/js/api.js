@@ -92,7 +92,106 @@ function updateClubRow(cont, clubid) {
     let cell = document.getElementsByTagName('td')
     cell[parseInt(cont) * 4 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 1].innerHTML + "' onblur='midclubname(this)'/>"
     cell[parseInt(cont) * 4 + 2].innerHTML = "<button onclick=updateClub(" + parseInt(clubid) + ")>保存</button>";
+}
 
+oldhometeam = ""
+oldawayteam = ""
+oldstarttime = ""
+oldmatchtime = ""
+oldwinteam = ""
+oldvideoweb = ""
+
+function updateMatchRow(cont, matchid) {
+    let cell = document.getElementsByTagName('td')
+    oldhometeam = cell[parseInt(cont) * 9 + 1].innerHTML;
+    cell[parseInt(cont) * 9 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 1].innerHTML + "' onblur='midhometeam(this)'/>"
+    oldawayteam = cell[parseInt(cont) * 9 + 2].innerHTML;
+    cell[parseInt(cont) * 9 + 2].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 2].innerHTML + "' onblur='midawayteam(this)'/>"
+    oldstarttime = cell[parseInt(cont) * 9 + 3].innerHTML;
+    cell[parseInt(cont) * 9 + 3].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 3].innerHTML + "' onblur='midstarttime(this)'/>"
+    oldmatchtime = cell[parseInt(cont) * 9 + 4].innerHTML;
+    cell[parseInt(cont) * 9 + 4].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 4].innerHTML + "' onblur='midmatchtime(this)'/>"
+    oldwinteam = cell[parseInt(cont) * 9 + 5].innerHTML;
+    cell[parseInt(cont) * 9 + 5].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 5].innerHTML + "' onblur='midwinteam(this)'/>"
+    oldvideoweb = cell[parseInt(cont) * 9 + 6].innerHTML;
+    cell[parseInt(cont) * 9 + 6].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 9 + 6].innerHTML + "' onblur='midvideoweb(this)'/>"
+
+
+    cell[parseInt(cont) * 9 + 7].innerHTML = "<button onclick=updateMatch(" + parseInt(matchid) + ")>保存</button>";
+
+}
+
+function updateMatch(matchid) {
+    get('http://localhost:8080/updateMatch',
+        {
+            matchid: matchid,
+            hometeam: function () {
+                if (newhometeam === '')
+                    return oldhometeam;
+                else return newhometeam;
+            },
+            awayteam: function () {
+                if (newawayteam === '')
+                    return oldawayteam;
+                else return newawayteam;
+            },
+            starttime: function () {
+                if (newstarttime === '')
+                    return oldstarttime;
+                else return newstarttime;
+            },
+            matchtime: function () {
+                if (newmatchtime === '')
+                    return oldmatchtime;
+                else return newmatchtime;
+            },
+            winteam: function () {
+                if (newwinteam === '')
+                    return oldwinteam;
+                else return newwinteam;
+            },
+            videoweb: function () {
+                if (newvideoweb === '')
+                    return oldvideoweb;
+                else return newvideoweb;
+            }
+        }, function (data) {
+            if (data.code === 200) {
+                alert(data.reason)
+                manageMatch();
+            }
+        })
+}
+
+newhometeam = ""
+newawayteam = ""
+newstarttime = ""
+newmatchtime = ""
+newwinteam = ""
+newvideoweb = ""
+
+function midhometeam(inp) {
+    newhometeam = inp.value;
+}
+
+function midawayteam(inp) {
+    newawayteam = inp.value;
+}
+
+function midstarttime(inp) {
+    newstarttime = inp.value;
+}
+
+function midmatchtime(inp) {
+    newmatchtime = inp.value;
+}
+
+function midwinteam(inp) {
+    newwinteam = inp.value;
+}
+
+function midvideoweb(inp) {
+    newvideoweb = inp.value;
 }
 
 oldrname = ""
@@ -103,13 +202,13 @@ oldrole = ""
 function updatePlayerRow(cont, playerid) {
     let cell = document.getElementsByTagName('td')
     oldname = cell[parseInt(cont) * 7 + 1].innerHTML;
-    cell[parseInt(cont) * 7 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 1].innerHTML + "' onblur='midplayername(this)'/>"
+    cell[parseInt(cont) * 7 + 1].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 7 + 1].innerHTML + "' onblur='midplayername(this)'/>"
     oldage = cell[parseInt(cont) * 7 + 2].innerHTML;
-    cell[parseInt(cont) * 7 + 2].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 2].innerHTML + "' onblur='midplayerage(this)'/>"
+    cell[parseInt(cont) * 7 + 2].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 7 + 2].innerHTML + "' onblur='midplayerage(this)'/>"
     oldclubname = cell[parseInt(cont) * 7 + 3].innerHTML;
-    cell[parseInt(cont) * 7 + 3].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 3].innerHTML + "' onblur='midplayerclubid(this)'/>"
+    cell[parseInt(cont) * 7 + 3].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 7 + 3].innerHTML + "' onblur='midplayerclubid(this)'/>"
     oldrole = cell[parseInt(cont) * 7 + 4].innerHTML;
-    cell[parseInt(cont) * 7 + 4].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 4 + 4].innerHTML + "' onblur='midplayerrole(this)'/>"
+    cell[parseInt(cont) * 7 + 4].innerHTML = "<input type='text' style=\"border:#16e4ff 1px solid\" size='15' value='" + cell[parseInt(cont) * 7 + 4].innerHTML + "' onblur='midplayerrole(this)'/>"
     cell[parseInt(cont) * 7 + 5].innerHTML = "<button onclick=updatePlayer(" + parseInt(playerid) + ")>保存</button>";
 
 }
@@ -257,6 +356,16 @@ function showClub() {
     })
 }
 
+function showMatch() {
+    get('http://localhost:8080/manageMatch', {}, function (data) {
+        let orderMatchData = data[0];
+        let dataMatchJson = JSON.stringify(orderMatchData);
+        let orderClubData = data[1];
+        let dataClubJson = JSON.stringify(orderClubData);
+        location.href = encodeURI("showmatch?dataMatchJson=" + dataMatchJson + "&dataClubJson=" + dataClubJson);
+    })
+}
+
 function showPlayer() {
     get('http://localhost:8080/managePlayer', {}, function (data) {
         let orderPlayerData = data[0];
@@ -277,6 +386,16 @@ function managePlayer() {
     })
 }
 
+function manageMatch() {
+    get('http://localhost:8080/manageMatch', {}, function (data) {
+        let orderMatchData = data[0];
+        let dataMatchJson = JSON.stringify(orderMatchData);
+        let orderClubData = data[1];
+        let dataClubJson = JSON.stringify(orderClubData);
+        location.href = encodeURI("match?dataMatchJson=" + dataMatchJson + "&dataClubJson=" + dataClubJson);
+    })
+}
+
 function addPlayer() {
     get('http://localhost:8080/addplayerinjs',
         {
@@ -291,6 +410,26 @@ function addPlayer() {
             } else {
                 alert(data.reason)
                 managePlayer();
+            }
+        })
+}
+
+function addMatch() {
+    get('http://localhost:8080/addmatchinjs',
+        {
+            hometeam: $("#hometeam").val(),
+            awayteam: $("#awayteam").val(),
+            starttime: $("#starttime").val(),
+            matchtime: $("#matchtime").val(),
+            winteam: $("#winteam").val(),
+            videoweb: $("#videoweb").val()
+        }, function (data) {
+            if (data.code === 200) {
+                alert(data.reason)
+                manageMatch();
+            } else {
+                alert(data.reason)
+                manageMatch();
             }
         })
 }

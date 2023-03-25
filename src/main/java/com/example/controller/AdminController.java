@@ -4,6 +4,7 @@ import com.example.entity.Club;
 import com.example.entity.User;
 import com.example.entity.resp.RestBean;
 import com.example.service.ClubService;
+import com.example.service.MatchService;
 import com.example.service.PlayerService;
 import com.example.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,8 @@ public class AdminController {
     ClubService clubService;
     @Resource
     PlayerService playerService;
+    @Resource
+    MatchService matchService;
 
     @GetMapping(value = "/api/auth/logout-success")
     public RestBean<Void> logoutSuccess() {
@@ -68,6 +71,14 @@ public class AdminController {
         return list;
     }
 
+    @GetMapping(value = "/manageMatch")
+    public List<RestBean> manageMatch() {
+        List<RestBean> list = new LinkedList<>();
+        list.add(new RestBean<>(200, "", matchService.selectAllMatch()));
+        list.add(new RestBean<>(200, "", clubService.selectAllClub()));
+        return list;
+    }
+
     @GetMapping(value = "/deletClub")
     public RestBean<Void> deletClub(int clubid) {
         if (clubService.deletClub(clubid))
@@ -100,6 +111,19 @@ public class AdminController {
         else return new RestBean<>(400, "修改失败！");
     }
 
+    @GetMapping(value = "/updateMatch")
+    public RestBean<Void> updateMatch(int matchid,
+                                      String hometeam,
+                                      String awayteam,
+                                      String starttime,
+                                      int matchtime,
+                                      String winteam,
+                                      String videoweb) {
+        if (matchService.updateMatch(matchid, hometeam, awayteam, starttime, matchtime, winteam, videoweb))
+            return new RestBean<>(200, "修改成功");
+        else return new RestBean<>(400, "修改失败！");
+    }
+
     @GetMapping(value = "/addclubinjs")
     public RestBean<Void> addClub(String clubname) {
         if (clubService.addClub(clubname))
@@ -117,5 +141,19 @@ public class AdminController {
         else return new RestBean<>(400, "添加失败！");
 
     }
+
+    @GetMapping(value = "/addmatchinjs")
+    public RestBean<Void> addmatch(int hometeam,
+                                   int awayteam,
+                                   String starttime,
+                                   int matchtime,
+                                   int winteam,
+                                   String videoweb) {
+        if (matchService.addMatch(hometeam, awayteam, starttime, matchtime, winteam, videoweb))
+            return new RestBean<>(200, "添加成功");
+        else return new RestBean<>(400, "添加失败！");
+
+    }
+
 
 }

@@ -43,7 +43,9 @@
             dataClubJson = $.parseJSON(decodeURI(str));
 
             for (let data of dataClubJson.data) {
-                document.getElementById("selectplayergslaaa").options.add(new Option(data.clubname, data.clubid));
+                document.getElementById("hometeam").options.add(new Option(data.clubname, data.clubid));
+                document.getElementById("awayteam").options.add(new Option(data.clubname, data.clubid));
+                document.getElementById("winteam").options.add(new Option(data.clubname, data.clubid));
             }
         }
     </script>
@@ -67,14 +69,14 @@
                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                     <div class="page-title-wrapper">
                         <div class="page-title-box">
-                            <h4 class="page-title">录入队员信息</h4>
+                            <h4 class="page-title">录入赛事信息</h4>
                         </div>
                         <div class="breadcrumb-list">
                             <ul>
                                 <li class="breadcrumb-link">
                                     <a href="javascript:manageClub()"><i class="fas fa-home mr-2"></i>赛事管理系统</a>
                                 </li>
-                                <li class="breadcrumb-link active">录入队员信息</li>
+                                <li class="breadcrumb-link active">录入赛事信息</li>
                             </ul>
                         </div>
                     </div>
@@ -86,9 +88,9 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="card">
                             <div class="card-header">
-                                <h4>添加战队</h4>
+                                <h4>添加赛事</h4>
                                 <p class="card-desc">请在下方输入对应信息
-                                    <code> 队员id </code> 将自动生成
+                                    <code> 赛事id </code> 将自动生成
                                 </p>
                             </div>
                             <div class="card-body">
@@ -97,46 +99,62 @@
                                         <div class="row">
                                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
-                                                    <label for="addplayername" class="col-form-label">队员名称</label>
-                                                    <input class="form-control" type="text"
-                                                           placeholder="队员名称"
-                                                           id="addplayername" name="addplayername">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="addplayerage" class="col-form-label">队员年龄</label>
-                                                    <input class="form-control" type="text"
-                                                           placeholder="队员年龄"
-                                                           id="addplayerage" name="addplayerage">
-                                                </div>
-                                            </div>
-                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
-                                                <div class="form-group">
-                                                    <label for="selectplayergslaaa" class="col-form-label">战队</label>
-                                                    <select id="selectplayergslaaa"
+                                                    <label for="hometeam" class="col-form-label">主场战队</label>
+                                                    <select id="hometeam"
                                                             class="select2 form-control table-wrapper"
-                                                            name="selectplayergslaaa">
+                                                            name="hometeam">
 
                                                     </select>
                                                 </div>
                                             </div>
                                             <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
                                                 <div class="form-group">
-                                                    <label for="addplayerrole" class="col-form-label">角色</label>
-                                                    <select class="select2 form-control" id="addplayerrole" name="addplayerrole">
-                                                        <option value="上单">上单</option>
-                                                        <option value="打野">打野</option>
-                                                        <option value="中单">中单</option>
-                                                        <option value="射手">射手</option>
-                                                        <option value="辅助">辅助</option>
+                                                    <label for="awayteam" class="col-form-label">客场战队</label>
+                                                    <select id="awayteam"
+                                                            class="select2 form-control table-wrapper"
+                                                            name="awayteam">
+
                                                     </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="starttime" class="col-form-label">开始时间</label>
+                                                    <input class="form-control" type="text"
+                                                           placeholder="开始时间"
+                                                           id="starttime" name="starttime">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="matchtime" class="col-form-label">比赛用时</label>
+                                                    <input class="form-control" type="text"
+                                                           placeholder="比赛用时"
+                                                           id="matchtime" name="matchtime">
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="winteam" class="col-form-label">获胜战队</label>
+                                                    <select id="winteam"
+                                                            class="select2 form-control table-wrapper"
+                                                            name="winteam">
+
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 col-12">
+                                                <div class="form-group">
+                                                    <label for="videoweb" class="col-form-label">视频地址</label>
+                                                    <input class="form-control" type="text"
+                                                           placeholder="视频地址"
+                                                           id="videoweb" name="videoweb">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group mb-0">
                                             <button class="btn btn-primary" type="submit"
-                                                    onclick="javascript:addPlayer()">提交
+                                                    onclick="javascript:addMatch()">提交
                                             </button>
                                         </div>
                                     </div>

@@ -2,6 +2,7 @@ package com.example;
 
 import com.example.entity.Club;
 import com.example.repo.ClubRepository;
+import com.example.repo.MatchRepository;
 import com.example.repo.UserRepository;
 import com.example.service.ClubService;
 import com.example.service.UserService;
@@ -17,6 +18,8 @@ class MatchManageApplicationTests {
     UserRepository userRepository;
     @Resource
     ClubRepository clubRepository;
+    @Resource
+    MatchRepository matchRepository;
 
     @Resource
     UserService userService;
@@ -25,6 +28,7 @@ class MatchManageApplicationTests {
 
     @Test
     void contextLoads() {
+        System.out.println(matchRepository.findAll());
     }
 
 }
