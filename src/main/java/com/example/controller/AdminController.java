@@ -11,8 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -155,5 +154,18 @@ public class AdminController {
 
     }
 
+    @GetMapping(value = "/countsum")
+    public List<RestBean> countsum() {
+        int usercount = userService.countsum();
+        int clubcount = clubService.countsum();
+        int playercount = playerService.countsum();
+        int matchcount = matchService.countsum();
+        List<RestBean> list = new LinkedList<>();
+        list.add(new RestBean<>(200, usercount + ""));
+        list.add(new RestBean<>(200, clubcount + ""));
+        list.add(new RestBean<>(200, playercount + ""));
+        list.add(new RestBean<>(200, matchcount + ""));
+        return list;
+    }
 
 }

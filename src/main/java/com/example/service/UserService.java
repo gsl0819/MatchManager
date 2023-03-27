@@ -13,4 +13,6 @@ public interface UserService {
     boolean updateUser(int userid, String username);
 
     String getRoleByUsername(String username);
+
+    int countsum();
 }

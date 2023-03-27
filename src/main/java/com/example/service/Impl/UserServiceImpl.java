@@ -27,7 +27,7 @@ public class UserServiceImpl implements UserService {
         try {
             repository.save(user);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             return false;
         }
 
@@ -59,6 +59,11 @@ public class UserServiceImpl implements UserService {
     @Override
     public String getRoleByUsername(String username) {
         return repository.findUserByUsername(username).getRole();
+    }
+
+    @Override
+    public int countsum() {
+        return repository.countUsersByUseridIsNotNull();
     }
 
 }

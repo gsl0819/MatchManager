@@ -28,7 +28,7 @@ class MatchManageApplicationTests {
 
     @Test
     void contextLoads() {
-        System.out.println(matchRepository.findAll());
+        System.out.println(userService.countsum());
     }
 
 }

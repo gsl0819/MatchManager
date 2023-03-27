@@ -64,4 +64,9 @@ public class MatchServiceImpl implements MatchService {
         if (matchtest == null) return false;
         else return true;
     }
+
+    @Override
+    public int countsum() {
+        return matchRepository.countMatchtablesByMatchidNotNull();
+    }
 }

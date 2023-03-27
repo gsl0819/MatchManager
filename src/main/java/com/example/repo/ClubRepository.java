@@ -16,4 +16,6 @@ public interface ClubRepository extends JpaRepository<Club, Integer> {
     int deleteClubByClubid(int clubid);
 
     Club findClubByClubname(String clubname);
+
+    int countClubsByClubidNotNull();
 }

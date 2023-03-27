@@ -12,4 +12,6 @@ public interface MatchService {
 
     boolean updateMatch(int matchid, String hometeam, String awayteam, String starttime, int matchtime, String winteam, String videoweb);
 
+    int countsum();
+
 }

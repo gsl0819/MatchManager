@@ -16,4 +16,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Transactional
     int deleteUserByUserid(Integer userid);
 
+    int countUsersByUseridIsNotNull();
 }

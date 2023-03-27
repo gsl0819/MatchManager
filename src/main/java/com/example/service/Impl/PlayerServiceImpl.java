@@ -63,4 +63,9 @@ public class PlayerServiceImpl implements PlayerService {
             return false;
         }
     }
+
+    @Override
+    public int countsum() {
+        return playerRepository.countPlayersByClubidNotNull();
+    }
 }

@@ -14,4 +14,6 @@ public interface PlayerService {
 
     boolean addPlayer(String playername, int playerage, int playerclub, String playerrole);
 
+    int countsum();
+
 }

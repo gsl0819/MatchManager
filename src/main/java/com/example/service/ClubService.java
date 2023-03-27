@@ -12,5 +12,7 @@ public interface ClubService {
     boolean updateClub(int clubid, String clubname);
 
     boolean addClub(String clubname);
+
+    int countsum();
 }
 

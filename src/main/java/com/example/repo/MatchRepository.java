@@ -12,4 +12,6 @@ public interface MatchRepository extends JpaRepository<Matchtable, Integer> {
     List<Matchtable> findAll();
 
     Matchtable findMatchtableByMatchid(int matchid);
+
+    int countMatchtablesByMatchidNotNull();
 }

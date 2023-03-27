@@ -15,4 +15,6 @@ public interface PlayerRepository extends JpaRepository<Player, Integer> {
 
     @Transactional
     int deletePlayerByPlayerid(int playerid);
+
+    int countPlayersByClubidNotNull();
 }

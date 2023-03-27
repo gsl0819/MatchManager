@@ -48,4 +48,9 @@ public class ClubServiceImpl implements ClubService {
             return false;
         }
     }
+
+    @Override
+    public int countsum() {
+        return clubRepository.countClubsByClubidNotNull();
+    }
 }
