@@ -1,13 +1,9 @@
 package com.example.service.Impl;
 
-import com.example.entity.Club;
 import com.example.entity.Matchtable;
-import com.example.entity.Player;
 import com.example.repo.ClubRepository;
 import com.example.repo.MatchRepository;
-import com.example.service.ClubService;
 import com.example.service.MatchService;
-import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
