@@ -2,7 +2,6 @@ package com.example.service.Impl;
 
 import com.example.entity.Club;
 import com.example.entity.Player;
-import com.example.entity.User;
 import com.example.repo.ClubRepository;
 import com.example.repo.PlayerRepository;
 import com.example.service.PlayerService;
